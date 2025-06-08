@@ -42,9 +42,8 @@ exports.getChapterById = async (req, res) => {
 
 exports.uploadChapters = async (req, res) => {
   try {
-    const filePath = req.file.path;
     const raw = req.file.buffer.toString('utf-8');
-    let data;
+    let data=[];
     try {
       data = JSON.parse(raw);
     } catch (err) {
@@ -66,6 +65,7 @@ exports.uploadChapters = async (req, res) => {
 
     res.status(200).json({ message: 'Upload complete', failed });
   } catch (e) {
+    console.log("error: ",e)
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
